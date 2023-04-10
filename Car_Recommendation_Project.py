@@ -48,7 +48,7 @@ with header:
 with dataset:
     st.header('Web-scrapped Dataset Overview')
     st.write('**_This is a treemap describing our dataset that contains 187 car models from 37 different'
-             'brands which are all produced after 2021_**')
+             ' brands which are all produced after 2021_**')
 
     df = pd.read_csv('dfApril_01Sentiment.csv').drop(['Unnamed: 0'], axis=1)
     # st.write(df.head(5))
@@ -64,8 +64,10 @@ with dataset:
 
     fig = px.treemap(model_count, path=['Car Brand'], values='No.of cars', hover_data=['% of Cars'],color ='% of Cars')
 
-    fig.update_layout(margin=dict(t=50, l=25, r=25, b=25))
+    # fig.update_layout(margin=dict(t=100, l=25, r=25, b=25))
+    fig.update_layout(margin_t= 15)
     st.plotly_chart(fig)
+
 
     # fig1, ax1 = plt.subplots()
     # ax1.pie(model_count['No.of cars'] ,labels = model_count['Car_Brand'])
