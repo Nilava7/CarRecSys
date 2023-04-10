@@ -64,7 +64,7 @@ with dataset:
 
     fig = px.treemap(model_count, path=['Car Brand'], values='No.of cars', hover_data=['% of Cars'],color ='% of Cars')
 
-    fig.update_layout(margin=dict(t=12, l=10, r=40, b=25))
+    fig.update_layout(margin=dict(t=12, l=10, r=10, b=25))
     # fig.update_layout(margin_t= 12,margin_b=15 )
     st.plotly_chart(fig)
 
@@ -122,7 +122,7 @@ with model_training:
     weightP = disp_col.select_slider("**Sensitivity to Horsepower**", options=temp_options, value=5)
     # weightPM = sel_col.select_slider("Sensitivity to Price/Mileage", options =temp_options, value=8)
     weightR = sel_col.select_slider("**Sensitivity to User Ratings**", options=temp_options, value=7)
-    weightPP = disp_col.select_slider("**Sensitivity to Horsepower/Price**", options=temp_options, value=6)
+    weightPP = sel_col.select_slider("**Sensitivity to Horsepower/Price**", options=temp_options, value=6)
 
 
     min_price = car_price[0]
