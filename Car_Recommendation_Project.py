@@ -47,7 +47,8 @@ with header:
 
 with dataset:
     st.header('Web-scrapped Dataset Overview')
-    st.write('This is a treemap describing our dataset that contains 187 car models from 37 different brands which are all produced after 2021')
+    st.write('**_This is a treemap describing our dataset that contains 187 car models from 37 different_**'
+             '**_brands which are all produced after 2021_**')
 
     df = pd.read_csv('dfApril_01Sentiment.csv').drop(['Unnamed: 0'], axis=1)
     # st.write(df.head(5))
