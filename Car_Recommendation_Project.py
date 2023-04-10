@@ -47,6 +47,7 @@ with header:
 
 with dataset:
     st.header('Web-scrapped Dataset Overview')
+    st.write('This is a treemap describing our dataset that contains 187 car models from 37 different brands which are all produced after 2021')
 
     df = pd.read_csv('dfApril_01Sentiment.csv').drop(['Unnamed: 0'], axis=1)
     # st.write(df.head(5))
@@ -201,7 +202,7 @@ with model_training:
 
         # d_top = pd.merge(d_top.pipe(pipe_reset_index), pr.pipe(pipe_reset_index)).drop('Ratings', axis=1).rename(
         #     columns={'Pseudo_Rating': 'Ratings'})
-        
+
         # d_top['Rank'] = [i + 1 for i in range(len(d_top))]
         # d_top.set_index('Rank', inplace=True)
         # d_top.index = [i + 1 for i in range(len(d_top))]
