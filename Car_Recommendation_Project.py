@@ -196,7 +196,7 @@ with model_training:
         pr = pr[pr['Model'].isin(d_top['Model'].unique())]
         st.write(d_top)
         st.write(pr)
-        d_top = pd.merge(d_top,pr).drop('Ratings',axis =1).rename(columns = {'Pseudo_Rating':'Ratings'})
+        d_top = pd.merge(d_top.pipe(pipe_reset_index),pr.pipe(pipe_reset_index)).drop('Ratings',axis =1).rename(columns = {'Pseudo_Rating':'Ratings'})
         d_top['Score(out of 5)'] = scaler.fit_transform(d_top[['Score(out of 5)']]) * 5
         d_top['Score(out of 5)'] =  d_top['Score(out of 5)'].apply(lambda x: round(x,2))
         # d_top['Rank'] = [i + 1 for i in range(len(d_top))]
