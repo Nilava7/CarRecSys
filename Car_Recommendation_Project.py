@@ -97,7 +97,7 @@ with model_training:
     df = pd.read_csv('dfApril_01Sentiment.csv').drop(['Unnamed: 0'], axis=1)
     di = pd.read_csv('CI.csv').drop(['Unnamed: 0'], axis=1)
     temp_options = range(11)
-    car_price= sel_col.slider('**Select Price Range**',max_value = 300000, value = [25000,75000],step = 5000)
+    car_price= sel_col.slider('**Select Price Range**',max_value = 350000, value = [25000,75000],step = 5000)
 
     weightMC = disp_col.select_slider("**Sensitivity to fuel efficiency**", options=temp_options, value=5)
     hp = int(disp_col.text_input('**Enter max preferred horsepower**', '350'))
@@ -109,7 +109,6 @@ with model_training:
     weightR = sel_col.select_slider("**Sensitivity to User Ratings**", options=temp_options, value=7)
     weightPP = disp_col.select_slider("**Sensitivity to Horsepower/Price**", options=temp_options, value=6)
 
-    st.write('#')
 
     min_price = car_price[0]
     max_price = car_price[1]
@@ -124,7 +123,7 @@ with model_training:
     seat_max = seats
 
     dn = (df.copy()
-    [df['Price'] >= min_price]  # Horsepower and no.of seats should change when the price changes
+    [df['Price'] >= min_price]
     [df['Price'] <= max_price]
 
     [df['Horsepower'] >= hp_min]
@@ -197,7 +196,7 @@ with model_training:
 
         d_top['Car_name'] = d_top['Car Brand'] + '   '+ d_top['Model']
 
-        DropdownCar = sel_col.selectbox('**Select Car**', options=d_top['Car_name'].iloc[0:8].unique())
+        DropdownCar = st.selectbox('**Select Car**', options=d_top['Car_name'].iloc[0:8].unique())
         cn = DropdownCar.split('   ')[0]
         mn = DropdownCar.split('   ')[1]
         dz = d_top[d_top['Car Brand'] == cn][d_top['Model'] == mn].sort_values('Score(out of 5)', ascending=False).pipe(pipe_reset_index)
@@ -234,6 +233,8 @@ with model_training:
 
         price = dz['Price'].iloc[0]
         col2.subheader('Price: ' + '$'+f'{price:,}')
+        ratings = dz['Average rating'].iloc[0]
+        col2.write('**Average rating:** ' + f'**{ratings}**' + ':star:')
         pros = dz['Pros'].iloc[0]
         cons =dz['Cons'].iloc[0]
         neg_com = dz['Comments'].iloc[-1]
