@@ -191,6 +191,8 @@ with model_training:
 
         }
         d_top=pd.DataFrame(d_top)
+        st.write(d_top.head())
+        st.write(pr.head())
         d_top = pd.merge(d_top,pr).drop('Ratings',axis =1).rename(columns = {'Pseudo_Rating':'Ratings'})
         d_top['Score(out of 5)'] = scaler.fit_transform(d_top[['Score(out of 5)']]) * 5
         d_top['Score(out of 5)'] =  d_top['Score(out of 5)'].apply(lambda x: round(x,2))
