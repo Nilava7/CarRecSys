@@ -64,7 +64,7 @@ with dataset:
 
     fig = px.treemap(model_count, path=['Car Brand'], values='No.of cars', hover_data=['% of Cars'],color ='% of Cars')
 
-    fig.update_layout(margin=dict(t=12, l=10, r=10, b=25))
+    fig.update_layout(margin=dict(t=12, l=10, r=-10, b=25))
     # fig.update_layout(margin_t= 12,margin_b=15 )
     st.plotly_chart(fig)
 
