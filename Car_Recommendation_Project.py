@@ -198,10 +198,10 @@ with model_training:
 
         pr = pr[pr['Car Brand'].isin(d_top['Car Brand'].unique())]
         pr = pr[pr['Model'].isin(d_top['Model'].unique())]
-        st.write(d_top)
-        st.write(pr)
-        d_top = pd.merge(d_top.pipe(pipe_reset_index), pr.pipe(pipe_reset_index)).drop('Ratings', axis=1).rename(
-            columns={'Pseudo_Rating': 'Ratings'})
+
+        # d_top = pd.merge(d_top.pipe(pipe_reset_index), pr.pipe(pipe_reset_index)).drop('Ratings', axis=1).rename(
+        #     columns={'Pseudo_Rating': 'Ratings'})
+        
         # d_top['Rank'] = [i + 1 for i in range(len(d_top))]
         # d_top.set_index('Rank', inplace=True)
         # d_top.index = [i + 1 for i in range(len(d_top))]
