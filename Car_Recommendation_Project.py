@@ -191,6 +191,9 @@ with model_training:
 
         }
         d_top=pd.DataFrame(d_top)
+
+        pr = pr[pr['Car Brand'].isin(d_top['Car Brand'].unique())]
+        pr = pr[pr['Model'].isin(d_top['Model'].unique())]
         st.write(d_top.head())
         st.write(pr.head())
         d_top = pd.merge(d_top,pr).drop('Ratings',axis =1).rename(columns = {'Pseudo_Rating':'Ratings'})
