@@ -31,6 +31,16 @@ def pipe_rank_index(d_top):
     # d_top.index = [i + 1 for i in range(len(d_top))]
     return d_top
 
+def dict_pseudo_rating(df,delta =2):
+    Indratings = pd.DataFrame(df.groupby(['Car Brand','Model'])['Rating'].count())
+    Indratings['Model'] = pd.DataFrame(df.groupby(['Car Brand'])['Model'].count())
+    Indratings['No. of ratings'] = pd.DataFrame(df.groupby(['Car Brand','Model'])['Rating'].count())
+    Indratings['Rating'] = (Indratings['Rating']*Indratings['No. of ratings'])/(Indratings['No. of ratings']+delta)
+    return Indratings.drop('Model',axis=1).reset_index().rename(columns = {'Rating': 'Pseudo_Rating'})
+
+
+
+
 with header:
     st.title('Car Recommendation System')
     # st.text('Recommending cars on basis of user inputs and filters')
@@ -95,6 +105,7 @@ with model_training:
     st.header('User Filters :gear:')
     sel_col, disp_col = st.columns(2)
     df = pd.read_csv('dfApril_01Sentiment.csv').drop(['Unnamed: 0'], axis=1)
+    pr = dict_pseudo_rating(df,delta =2)
     di = pd.read_csv('CI.csv').drop(['Unnamed: 0'], axis=1)
     temp_options = range(11)
     car_price= sel_col.slider('**Select Price Range**',max_value = 350000, value = [25000,75000],step = 5000)
@@ -180,6 +191,7 @@ with model_training:
 
         }
         d_top=pd.DataFrame(d_top)
+        d_top = pd.merge(d_top,pr).drop('Ratings',axis =1).rename(columns = {'Pseudo_Rating':'Ratings'})
         d_top['Score(out of 5)'] = scaler.fit_transform(d_top[['Score(out of 5)']]) * 5
         d_top['Score(out of 5)'] =  d_top['Score(out of 5)'].apply(lambda x: round(x,2))
         # d_top['Rank'] = [i + 1 for i in range(len(d_top))]
