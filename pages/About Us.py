@@ -15,9 +15,9 @@ with header:
 
 By focusing on customer needs and expectations and continuously seeking opportunities to optimize their product range, companies can be successful in this fast-paced industry and maximize their profits. To achieve this, a collection of customer data and an understanding of customer voices in the automotive industry are required.
 
-We scrapped information from the website https://www.edmunds.com/ and thus created our own dataset. This method allowed us to extract relevant information about vehicles and customer opinions directly from a trusted source.
+We scrapped information from the website and thus created our dataset. This method allowed us to extract relevant information about vehicles and customer opinions directly from a trusted source.
 
-With the collected and analyzed data, we were finally able to develop recommendations for the automotive product mix. These recommendations were based on the needs and desires of customers identified through the analysis of customer opinions. The final product was a sophisticated car recommendation system that used machine-learning algorithms to suggest the best cars for individual users. 
+With the collected and analyzed data, we could finally develop recommendations for the automotive product mix. These recommendations were based on the needs and desires of customers identified through the analysis of customer opinions. The final product was a sophisticated car recommendation system that used machine-learning algorithms to suggest the best cars for individual users. 
 
 The system took into account the user's budget, preferred car type, and features, as well as some custom filters, to provide personalized recommendations. To provide the best recommendation, we focused on identifying the vehicle models and features that were most popular with customers and achieved the highest customer satisfaction and coupled them with our custom user specific filters.
 
